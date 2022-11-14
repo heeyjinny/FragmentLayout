@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         //레이아웃에 프래그먼트 연결...
         //activity_main.xml에 생성했던 id가 frameLayout인 레이아웃에
         //ListFragment.kt를 생성하여 저장하고 있는 변수 listFragment 삽입
-        //transaction.add(R.id.frameLayout, listFragment)
+        //transaction.add(레이아웃, 프래그먼트) : 프래그먼트를 레이아웃에 추가
         transaction.add(R.id.frameLayout, listFragment)
 
         //1-6

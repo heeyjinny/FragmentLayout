@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListFragment">
+<!--  기존 최상위 레이아웃인 FrameLayout을 constraintLayout으로 변경함  -->
 
     <!--  텍스브 뷰 수정  -->
     <TextView

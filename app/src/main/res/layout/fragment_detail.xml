@@ -7,6 +7,7 @@
     tools:context=".DetailFragment"
     android:background="@color/teal_200"
     android:clickable="true">
+    <!--  기존 최상위 레이아웃인 FrameLayout을 constraintLayout으로 변경함  -->
 <!-- 배경설정: background
      아래쪽 프래그먼트의 클릭 방지: clickable=true  -->
 <!-- Back버튼 클릭 시 ListFragment로 돌아가는 코드 작성  -->
