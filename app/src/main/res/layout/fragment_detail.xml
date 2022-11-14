@@ -4,33 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListFragment">
+    tools:context=".DetailFragment"
+    android:background="@color/teal_200"
+    android:clickable="true">
+<!-- 배경설정: background
+     아래쪽 프래그먼트의 클릭 방지: clickable=true  -->
+<!-- Back버튼 클릭 시 ListFragment로 돌아가는 코드 작성  -->
+<!-- DetailFragment.kt 작성  -->
 
-    <!--  텍스브 뷰 수정  -->
+<!--  텍스트뷰 수정  -->
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="List Fragment"
+        android:text="Detail Fragment"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--  버튼 추가  -->
+<!--  뒤로가기 버튼 추가  -->
     <Button
-        android:id="@+id/btnNext"
-        android:text="Next"
-        android:textSize="24sp"
+        android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:text="Back"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        android:layout_marginTop="24dp"/>
 
-    <!--  액티비티 안에 뷰를 삽입할 수 있는 레이아웃 준비  -->
-    <!--  activity_main.xml 파일 수정  -->
+<!--  메인액티비티에 두개의 프래그먼트 연결  -->
+<!--  MainActivity.kt  -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
