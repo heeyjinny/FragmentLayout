@@ -33,4 +33,43 @@
     <!--  액티비티 안에 뷰를 삽입할 수 있는 레이아웃 준비  -->
     <!--  activity_main.xml 파일 수정  -->
 
+<!--  프래그먼트 생성 시 값을 전달받아 보여줄 뷰 2개 추가  -->
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="textTitle/key1"
+        android:textSize="16sp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/textValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNext" />
+
+    <TextView
+        android:id="@+id/textValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="textValue/key2"
+        android:textSize="16sp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textTitle"
+        app:layout_constraintTop_toBottomOf="@+id/btnNext" />
+
+<!--  ListFragment.kt에서 액티비티에서 전달받은 값을 꺼내 뷰에 보여주기  -->
+
+<!--  이미 생성되어 화면에 보이는 텍스트뷰 추가  -->
+    <TextView
+        android:id="@+id/textFromActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="액티비티의 버튼 클릭 시 값 변경됨"
+        android:textSize="16sp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTitle" />
+
+<!--  ListFragment.kt에 액티비티에서 전달받을 값을 출력하는 메서드 추가  -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

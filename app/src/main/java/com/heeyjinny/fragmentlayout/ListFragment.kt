@@ -21,6 +21,10 @@ class ListFragment : Fragment() {
     //MainActivity를 담아둘 멤버변수 선언
     var mainActivity: MainActivity? = null
 
+    //4-2
+    //바인딩뷰를 전역변수로 바꿔줘야 다른 함수에도 인식함 lateinit을 사용해 프로퍼티로 만듦
+    lateinit var binding: FragmentListBinding
+
     //1-1
     //onCreateView()의 파라미터
     //inflater: 레이아웃 파일을 로드하기 위한 레이아웃 인플레이터 기본제공
@@ -37,8 +41,26 @@ class ListFragment : Fragment() {
         //return binding.root: onCreateView의 반환값이 View? 이기 때문에 바인딩의 root뷰 넘겨줌
         //기존 리턴코드 삭제 후 바인딩 사용
         //return inflater.inflate(R.layout.fragment_list, container, false)
-        val binding = FragmentListBinding.inflate(inflater, container, false)
+
+        //4-3 클래스 안에서 바인딩을 모두 사용할 수 있게 하기 위해 lateint으로 변수를 만들고 만들어 두었던 val예약어 삭제
+        //val binding = FragmentListBinding.inflate(inflater, container, false)
+        binding = FragmentListBinding.inflate(inflater, container, false)
         binding.btnNext.setOnClickListener { mainActivity?.goDetail() }
+
+        //3
+        //프래그먼트가 생성될 때 액티비티에서 전달받은 값을 꺼내 레이아웃 뷰에 보여주는 코드 작성
+        //전달받은 값을 꺼낼 때는 액티비티의 intent처럼 arguments에서 값을 직접 꺼낼 수 있음
+        //return binding.root 윗줄에 코드 작성
+        //arguments에서 값을 꺼낸 후 레이아웃 텍스트 뷰에 입력
+        binding.textTitle.text = arguments?.getString("key1")
+        binding.textValue.text = "${arguments?.getInt("key2")}"
+        //binding.textValue.text = arguments?.getInt("key2").toString()
+
+        //3-1
+        //이미 생성되어 화면에 보이는 프래그먼트의 텍스트뷰에 값 전달하기
+        //파라미터를 통해 액티비티의 값을 전달하여 이미 보이는 뷰의 값을 변경할 수 있음
+        //fragment_list.xml 파일 수정
+
         return binding.root
 
         //2-5
@@ -64,5 +86,22 @@ class ListFragment : Fragment() {
         if(context is MainActivity) mainActivity = context
 
     }
+
+    //4
+    //액티비티로부터 전달받을(파라미터) 문자열 값을
+    //텍스트뷰에(textFromActivity) 출력하는 메서드 setValue()생성
+    fun setValue(value:String){
+        //4-1
+        //바인딩뷰를 전역변수로 바꿔줘야 다른 함수에도 인식함
+        //4-4
+        //텍스트뷰에 파라미터로 전달받은 값 출력
+        binding.textFromActivity.text = value
+
+    }
+
+    //5
+    //액티비티 화면에 버튼 추가 후 버튼을 눌렀을 때 액티비티에 설정한 값을
+    //프래그먼트의 텍스트 뷰에 출력하도록 설정
+    //activity_main.xml에 버튼 추가...
 
 }//ListFragment

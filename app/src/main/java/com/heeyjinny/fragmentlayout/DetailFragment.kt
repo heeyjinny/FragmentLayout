@@ -32,6 +32,10 @@ class DetailFragment : Fragment() {
         binding.btnBack.setOnClickListener { mainActivity.goBack() }
         return binding.root
 
+        //4
+        //에뮬레이터를 통해 프래그먼트간에 화면전환이 잘 되는 것을 확인할 수 있음
+        //이제 프래그먼트로 값 전달하는 것을 구현하기 위해 MainActivity.kt수정
+
     }//onCreateView
 
     //3-2

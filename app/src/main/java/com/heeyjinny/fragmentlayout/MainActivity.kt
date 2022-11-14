@@ -10,6 +10,10 @@ class MainActivity : AppCompatActivity() {
     //뷰바인딩
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
+    //4-2
+    //전역변수 listFragment lateinit으로 생성
+    lateinit var listFragment:ListFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //뷰바인딩
@@ -23,6 +27,21 @@ class MainActivity : AppCompatActivity() {
         //1-2
         //onCreate()에서 프래그먼트 호출
         setFragment()
+
+        //4
+        //SEND 버튼 클릭 시 listFragment를 통해 가지고 있는 setValue()메서드 호출
+        binding.btnSend.setOnClickListener {
+            //4-1
+            //setFragment()메서드 안에 변수로 선언된 val listFragment를 밖으로 빼서
+            //전역변수 var(프로퍼티)로 만들어 클래스 안에서 모두 사용할 수 있게 수정
+
+            //4-4
+            //버튼 클릭 시 리스트프래그먼트의 setValue메서드에 값을 파라미터로 전달해 호출
+            listFragment.setValue("액티비티에서 온 값...")
+
+            //FIN
+            //에뮬레이터 실행 후 확인...
+        }
 
     }//onCreate
 
@@ -42,7 +61,34 @@ class MainActivity : AppCompatActivity() {
         //begin transaction -> add fragment -> commit transaction
         //
         //ListFragment() 생성
-        val listFragment: ListFragment = ListFragment()
+        //val listFragment: ListFragment = ListFragment()
+        //4-3
+        //생성한 ListFragment()의 변수를 밖에서 변수선언 했기 때문에 val예약어 삭제
+        listFragment = ListFragment()
+
+        //3
+        //프래그먼트로 값 전달하기
+        //값 전달 방법: 프래그먼트 생성 시 값 전달, 이미 생성되어있는 프래그먼트에 값 전달
+
+        //3-1
+        //프래그먼트 생성 시 값 전달하기
+        //프래그먼트를 생성하면서 액티비티에 있는 값을 프래그먼트에 전달하는 방법으로
+        //안드로이드에서 arguments제공
+        //arguments: 프래그먼트의 기본 프로퍼티, 선언 없이 사용 가능
+        //Bundle을 arguments에 전달하면 생성된 프래그먼트에서 arguments로 꺼낼 수 있음
+        //
+        //번들 생성 후 전달할 값 담기(put함수 사용 / 키 값, 전달 값)
+        var bundle = Bundle()
+        bundle.putString("key1", "프래그먼트 생성 시 값 전달")
+        bundle.putInt("key2", 20220101)
+
+        //3-2
+        //값이 담긴 번들을 생성한 리스트 프래그먼트의 arguments에 담기
+        listFragment.arguments = bundle
+
+        //3-3
+        //리스트프래그먼트의 레이아웃 파일 fragment_list.xml에
+        //위 번틀 값을 보여줄 텍스트 뷰 2개 추가
 
         //1-4
         //액티비티가 가지고 있는 프래그먼트 매니저를 통해 트랜잭션을 시작하여 변수에 저장
@@ -111,8 +157,5 @@ class MainActivity : AppCompatActivity() {
         //ListFragment.kt 코드 수정
 
     }
-
-
-
 
 }//MainActivity
